@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+bool isCorrect(int x,int n){
+	int ans = x * (x + 1) / 2;
+	if (ans == n) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+int main() {
+	int tc, i;
+	int x, n;
+	cin >> tc;
+	for (i = 0; i < tc; i++) {
+		cin >> x >> n;
+		if (isCorrect(x, n)){
+			cout << "YES" << endl;
+		}
+		else {
+			cout << "NO" << endl;
+		}
+	}
+}
