@@ -1,0 +1,20 @@
+// >> 183 = 1 ~ 183 : 9 (한자리수)+ 90(두자리수) + 84(세자리수 183%100+1)
+// (/10+1)*(10^i)
+#include <iostream>
+using namespace std;
+
+int main() {
+	//freopen("input.txt", "rt", stdin);
+	int n, i, cnt = 0, tmp;
+	cin >> n;
+	for (i = 1; i <= n; i++) {
+		tmp = i;
+		while (tmp > 0) {
+			tmp = tmp / 10;
+			cnt++;
+		}
+	}
+	//시간복잡도 일의 자리 > O(n) 십의 자리 O(2n) ...
+	cout << cnt <<endl;
+	return 0;
+}
