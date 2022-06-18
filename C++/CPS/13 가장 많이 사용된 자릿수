@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+int main() {
+
+	/* char형으로 읽을 생각을 못 함 ..
+	
+	while (n > 0) {
+		n = n % 10;
+		for (i = 0; i < 10; i++) {
+			if (n == i) {
+				len[i] += 1;
+			}
+		}
+	}
+	int j, max = 0;
+	for (j = 0; j < 10; j++) {
+		if (len[j] > max) {
+			max = len[j];
+			res = j;
+		}
+	}
+	cout << res;
+	*/
+	int res = 0, i;
+	int digit, max = 0;
+	int len[10] = { 0 };
+	char a[101];
+	cin >> a;
+	//자릿수 저장
+	for (i = 0; a[i] != '\0'; i++) {
+		digit = a[i] - 48; //아스키 > 숫자
+		len[digit]++;
+	}
+	//최댓값 저장
+	for (i = 0; i <= 9; i++) {
+		if (len[i] > max) {
+			max = len[i];
+			res = i;
+
+		}
+	}
+	cout << res;
+}
