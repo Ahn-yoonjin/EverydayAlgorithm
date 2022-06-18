@@ -1,0 +1,38 @@
+#include <iostream>
+//1. howMany 함수를 이용해 거주자 수 구하기 *문제: 테스트 케이스마다 새로 실행해야됨
+// >> 2. live[14][14] 배열에 거주자 수를 미리 구해 놓은 후 출력
+using namespace std;
+
+int howMany(int a, int b) {
+    if (b == 1)
+        return 1;
+    if (a == 0)
+        return b;
+    return (howMany(a - 1, b) + howMany(a, b - 1));
+}
+
+int main() {
+    int T, j,l,k, n;
+    cin >> T;
+    int live[14][14];
+    for (j = 0; j < 15; j++) {
+        for (l = 1; l < 15; l++) {
+            if (j == 0) {
+                live[j][l] = l;
+            }
+            else {
+                if (l == 1) {
+                    live[j][l] = 1;
+                }
+                else {
+                    live[j][l] = live[j - 1][l] + live[j][l - 1];
+                }
+            }
+        }
+    }
+    for (int i = 0; i < T; i++) {
+        cin >> k >> n;
+        cout << live[k][n]<< endl;
+        //cout<<howMany(k,n)<<endl;
+    }
+}
