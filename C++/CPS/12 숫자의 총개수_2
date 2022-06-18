@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int main() {
+
+	int n, sum = 0, cnt = 1, digit = 9, res = 0;
+	cin >> n;
+	while (sum + digit < n) {
+		sum = sum + digit;//sum은 자릿수 당 개수
+		res = res + (cnt * digit);//res는 최고자릿수 제외 숫자의 총 개수
+		cnt++;
+		digit = digit * 10;
+	}
+	res = res + ((n - sum) * cnt);
+
+	//시간 복잡도 O(n)
+	cout << res << endl;
+	return 0;
+}
