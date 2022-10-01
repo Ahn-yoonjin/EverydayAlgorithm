@@ -1,0 +1,24 @@
+#1. Brute Force
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        N = len(nums)
+        
+        res = list()
+        for i in range (1,N):
+            cnt = 0
+            for j in range (i):
+                if nums[i]+nums[j] == target:
+                    res.append(i)
+                    res.append(j)
+                    res.sort()
+                    return res
+#2. HashTable
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        dict = {}   # {value : index}
+        for i, v in enumerate(nums):
+        #you can use index & value at the same time by using enumerate
+            if target - v not in dict:
+                dict[v] = i
+            else:
+                return [dict[target-v], i]
