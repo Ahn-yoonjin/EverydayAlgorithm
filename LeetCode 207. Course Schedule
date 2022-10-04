@@ -8,7 +8,7 @@ class Solution(object):
             graph[x].append(y)
 
         traced = set()
-        visited = set()    
+        visited = set() #not to search same graph again
         
         def dfs(i):
             if i in traced: # if it is cycle
