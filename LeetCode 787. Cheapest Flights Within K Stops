@@ -1,0 +1,19 @@
+#https://leetcode.com/problems/cheapest-flights-within-k-stops/
+class Solution:
+    def findCheapestPrice(self, n, flights, src, dst, K):
+        pq = [(0,src,K+1)]
+        graph = collections.defaultdict(dict)
+        for s,d,w in flights:
+            graph[s][d]=w
+        
+        while pq:
+            next_item = heapq.heappop(pq)
+            weight,source,stops = next_item
+            
+            if source == dst:
+                return weight
+            if stops>0:
+                for neighbor in graph[source]:
+                    heapq.heappush(pq,(weight+graph[source][neighbor],neighbor,K-1))
+                    
+            return -1
