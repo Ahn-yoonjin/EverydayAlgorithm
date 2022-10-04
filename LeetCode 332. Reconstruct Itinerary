@@ -1,0 +1,41 @@
+#https://leetcode.com/problems/reconstruct-itinerary/submissions/
+class Solution(object):
+    def findItinerary(self, tickets):    
+        graph = collections.defaultdict(list)
+        route = []
+        for a,b in sorted(tickets):
+            graph[a].append(b)
+        """
+        sort return nothing, but sorted return list
+        >> same with sorted(tickets,key=lambda x:x[0])
+        >> same with
+        for a,b in tickets: 
+            graph[a].append(b)
+        for a in graph:
+            graph[a].sort()
+        """
+            
+            
+        def dfs(a):
+            while graph[a]:
+                dfs(graph[a].pop(0)) #dictionary sequence
+            route.append(a)
+        
+        dfs('JFK')
+        """
+        tickets = [["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]
+        sorted(tickets) = [['JFK', 'MUC'], ['LHR', 'SFO'], ['MUC', 'LHR'], ['SFO', 'SJC']]
+        JFK > MUC > LHR > SFO > SJC
+        dfs('JFK'): dfs('MUC')
+        dfs('MUC'): dfs('LHR')
+        dfs('LHR'): dfs('SFO')
+        dfs('SFO'): dfs('SJC') 
+        dfs('SJC') : None > route =['SJC'] 
+        ...
+        route['SJC','SFO','LHR','MUC','JFK']
+        route[::-1] = ['JFK','MUC','LHR','SFO','SJC']
+        
+        """
+        
+        return route[::-1] #reverse the result
+       
