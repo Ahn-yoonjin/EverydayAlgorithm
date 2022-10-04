@@ -1,0 +1,47 @@
+#https://leetcode.com/problems/course-schedule/
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        
+        graph = collections.defaultdict(list)
+        #make graph
+        for x,y in prerequisites:
+            graph[x].append(y)
+
+        traced = set()
+        visited = set()    
+        
+        def dfs(i):
+            if i in traced: # if it is cycle
+                return False
+            if i in visited: # if already visit
+                return True
+            traced.add(i)
+            
+            for y in graph[i]:
+                if not dfs(y):
+                    return False
+                
+            traced.remove(i) #delete after search
+            visited.add(i)
+            return True
+        
+            #determine wheter is it cycle
+       
+        for x in list(graph):
+            if not dfs(x):
+                return False
+        
+        return True
+    """
+    numCourses = 2, prerequisites = [[1,0]]
+    graph = {1:0}
+    dfs(1)> return true
+    """
+    
+    """
+    numCourses = 2, prerequisites = [[1,0],[0,1]]
+    graph ={1:0, 0:1}
+    dfs(1) > traced=[1] dfs(0)
+    dfs(0) > traced=[1,0] dfs(1)
+    dfs(1) > cause 1 in traced > return False
+    """
